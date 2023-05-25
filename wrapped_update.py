@@ -9,7 +9,7 @@ df.head()
 
 client_id = 'client-id'
 client_secret = 'client-secret'
-client_credentials_manager = SpotifyClientCredentials(client_id='ee169470215f42c193d160758e86b089', client_secret='26f11eac5d5844aeb8377f2ccf71c33a')
+client_credentials_manager = SpotifyClientCredentials(client_id='client_id', client_secret='client_secret')
 sp=spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def get_artist_genre(name):
