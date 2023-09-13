@@ -6,7 +6,7 @@ library(tidyverse)
 library(knitr)
 library(ggplot2)
 library(ggdark)
-library(plotty)
+library(plotly)
 
 #File input name
 streamHistory <- fromJSON("data.json", flatten = TRUE)
@@ -71,6 +71,17 @@ timeDay <- mySpotify %>%
   ggtitle("When has there been more playback activity on my Spotify?", "Activity by date and time of day") +
   scale_fill_gradient(low = "white", high = "#1db940")
 timeDay
+
+#Most played BROCKHAMPTON album
+brockAlbum <- mySpotify %>%
+  filter(date >= "2019-01-01") %>%
+  group_by(date, hour = hour(endTime)) %>%
+  summarize(minutesListened = sum(minutes)) %>%
+  ggplot(aes(x = hour, y = date, fill = minutesListened)) +
+  geom_col(fill = "#1db940") +geom_tile() + dark_theme_linedraw() + 
+  labs(x = "Album Name", y = "Minutes Listened") +
+  ggtitle("Which Brockhampton album have I listened to the most?", "Activity by album") +
+brockAlbum
 
 
 # Playback activity by time of the day.
